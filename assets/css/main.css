@@ -49,8 +49,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.45;
 
-  /* Luces de ciudad detrás de cristal empañado */
-  background-image:
+  /* Lights animation */
+  /* background-image:
     radial-gradient(circle, rgba(255, 200, 120, 0.3) 0%, transparent 40%),
     radial-gradient(circle, rgba(255, 180, 80, 0.25) 0%, transparent 50%),
     radial-gradient(circle, rgba(80, 200, 255, 0.2) 0%, transparent 50%),
@@ -61,7 +61,7 @@ body {
   background-position:
     100px 0, 250px 200px, 400px 400px, 600px 150px, 300px 500px, 700px 300px;
   background-repeat: repeat;
-  animation: cityLights 25s linear infinite;
+  animation: cityLights 25s linear infinite; */
 }
 
 @keyframes cityLights {
@@ -228,11 +228,11 @@ body {
 
 /* glass card */
 .card {
-  padding: 18px;
-  border-radius: var(--radius);
+  padding: 0 18px 18px 18px;
+  /* border-radius: var(--radius);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.03); */
 }
 
 /* glass special (backdrop blur + subtle animated sheen) */
@@ -270,7 +270,7 @@ body {
 
 /* projects grid: responsive mosaic */
 .projects-grid {
-  display: grid;
+  /* display: grid; */
   gap: 18px;
   margin-top: 8px;
 }
@@ -281,6 +281,38 @@ body {
   gap: 10px;
   padding: 14px;
   border-radius: 4px;
+
+   /* border-radius: var(--radius); */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  margin: 20px;
+}
+
+
+.project h3 {
+  display: inline-flex;
+  align-items: center;   /* vertical centering between text and icon */
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.project h3 img {
+  display: inline-block;
+  object-fit: contain;
+  transform: translateY(1px); /* tiny nudge for pixel-perfect alignment */
+}
+
+/* Keep current table layout but make images responsive and proportional */
+.project table { width: 100%; border-collapse: collapse; }
+.project table td img { width: 100%; height: auto; display: block; border-radius: 6px; }
+
+/* small-screen fallback: stack the two cells vertically */
+@media (max-width: 720px) {
+  .project table, .project table tr { display: block; width: 100%; }
+  .project table td { display: block; width: 100%; margin-bottom: 10px; }
 }
 
 .project-media {
@@ -437,81 +469,4 @@ ul.skills {
 img {
   image-rendering: crisp-edges;
   /* o pixelated */
-}
-
-/* === TFG carousel (row, non-stacking) - no transform to avoid motion === */
-.tfg-page .tfg-carousel {
-  position: relative;
-  width: 100%;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-  border-radius: 6px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
-  padding: 8px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
-}
-
-/* each slide participates in the flow (row) */
-.tfg-slide {
-  flex: 1 1 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Transition ONLY opacity & filter to avoid any movement */
-  transition: opacity 0.9s ease, filter 0.9s ease;
-  opacity: 0.40;
-  /* base: dimmed */
-  filter: brightness(0.45) contrast(0.95);
-  pointer-events: auto;
-  overflow: hidden;
-  border-radius: 4px;
-  min-width: 0;
-  /* for image truncation on small screens */
-  background: rgba(0, 0, 0, 0.02);
-  will-change: opacity, filter;
-}
-
-/* image itself */
-.tfg-slide img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  display: block;
-  /* keep image stable: transition only opacity/filter */
-  transition: opacity 0.9s ease, filter 0.9s ease;
-  opacity: 1;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-/* the active slide: full brightness (no scale) */
-.tfg-slide.active {
-  opacity: 1;
-  filter: brightness(1) contrast(1);
-}
-
-/* hover: slight visual emphasis, but WITHOUT transform */
-.tfg-slide:hover {
-  opacity: 0.98;
-  filter: brightness(1.03) contrast(1.02);
-}
-
-/* responsive: stack vertically on small screens */
-@media (max-width:900px) {
-  .tfg-page .tfg-carousel {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .tfg-slide {
-    width: 100%;
-  }
-
-  .tfg-slide img {
-    height: 220px;
-    object-fit: contain;
-  }
 }
