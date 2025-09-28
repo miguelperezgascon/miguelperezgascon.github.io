@@ -181,6 +181,12 @@ body {
   text-underline-offset: 4px;
 }
 
+a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* flourish hr containers */
 .flourish-hr-left {
   display: flex;
