@@ -295,6 +295,9 @@ a {
   margin: 20px;
 }
 
+.about-text h3 {
+  align-items: center;
+}
 
 .project h3 {
   display: inline-flex;
